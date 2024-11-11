@@ -1,0 +1,4 @@
+.env
+.venv/
+sample_data/
+asynch_indexer/__pycache__
