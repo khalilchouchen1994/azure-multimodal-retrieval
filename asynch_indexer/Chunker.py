@@ -1,4 +1,4 @@
-from langchain_text_splitters import RecursiveCharacterTextSplitter  
+from langchain.text_splitter import RecursiveCharacterTextSplitter  
 import time  
   
 class Chunker:  
@@ -6,25 +6,28 @@ class Chunker:
         self.chunk_size = chunk_size  
         self.chunk_overlap = chunk_overlap  
   
-    async def chunk_text(self, text_queue, chunk_queue, csv_writer, worker_id, logger):  
+    async def chunk_text(self, text_queue, chunk_queue, worker_id, logger):  
         while True:  
-            blob_name, text,parent_id = await text_queue.get()  
-            if text is None:  # Sentinel to end the loop  
+            data = await text_queue.get()  
+            if data is None:  # Sentinel to end the loop  
+                text_queue.task_done()  
                 break  
-            logger.debug(f"Chunker {worker_id}:Chunking document {blob_name}")
+  
+            blob_name, text, parent_id, page_number = data  
+            logger.info(f"Chunker {worker_id}: Chunking document {blob_name} page {page_number}")  
+  
             start_time = time.time()  
             splitter = RecursiveCharacterTextSplitter(  
                 chunk_size=self.chunk_size,  
                 chunk_overlap=self.chunk_overlap,  
-                length_function=len,  
-                is_separator_regex=False,  
+                length_function=len  
             )  
             chunks = splitter.split_text(text)  
             chunk_time = time.time() - start_time  
-            csv_writer.writerow([parent_id, None, "chunk_text", chunk_time, worker_id])  
+            logger.info(f"Chunker {worker_id}: Finished chunking in {chunk_time:.2f} seconds")  
   
-            # Put each chunk into the queue  
+            # Put each chunk into the chunk queue  
             for chunk in chunks:  
-                await chunk_queue.put((blob_name, chunk, parent_id))  
+                await chunk_queue.put((blob_name, chunk, parent_id, page_number))  
   
             text_queue.task_done()  

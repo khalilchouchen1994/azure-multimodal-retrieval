@@ -1,11 +1,33 @@
 #!/bin/bash  
   
 # Create a virtual environment  
-python -m venv .venv  
+python3 -m venv .venv  
   
 # Activate the virtual environment  
 source .venv/bin/activate  
   
+# Upgrade pip  
+python -m pip install --upgrade pip  
+  
 # Install required packages  
-python -m pip install --upgrade pip
-pip install azure-search-documents==11.6.0b4 openai python-dotenv azure-storage-blob azure-identity pymupdf langchain
+pip install -r requirements.txt
+  
+# Extract Poppler files  
+echo "Extracting Poppler..."  
+7z x poppler-24.08.0.7z -o"$PWD/poppler-24.08.0" -y  
+  
+# Set POPPLER_PATH in .env file  
+echo "Setting POPPLER_PATH in .env file..."  
+echo "POPPLER_PATH=$PWD/poppler-24.08.0/Library/bin" > .env  
+  
+# Deactivate virtual environment  
+deactivate  
+  
+echo "Setup complete."  
+
+
+
+
+
+
+
