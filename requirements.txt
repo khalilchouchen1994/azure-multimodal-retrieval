@@ -9,3 +9,4 @@ numpy
 langchain 
 tenacity 
 nest_asyncio
+ipykernel

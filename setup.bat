@@ -1,26 +1,47 @@
 @echo off  
+REM Setup Script for Project  
+REM ------------------------  
   
-REM Create a virtual environment  
+echo Creating the virtual environment...  
 python -m venv .venv  
   
-REM Activate the virtual environment  
-call .venv\Scripts\activate  
+IF NOT EXIST ".venv\Scripts\activate.bat" (  
+    echo Error: Virtual environment creation failed.  
+    exit /b 1  
+)  
   
-REM Upgrade pip  
+echo Activating the virtual environment...  
+call .venv\Scripts\activate.bat  
+  
+echo Upgrading pip and installing required packages...  
 python -m pip install --upgrade pip  
+IF NOT %ERRORLEVEL%==0 (  
+    echo Error: Failed to upgrade pip.  
+    exit /b 1  
+)  
+pip install -r requirements.txt  
+IF NOT %ERRORLEVEL%==0 (  
+    echo Error: Failed to install required packages.  
+    exit /b 1  
+)  
   
-REM Install required packages  
-pip install -r requirements.txt
-  
-REM Extract Poppler files  
 echo Extracting Poppler...  
-7z x poppler-24.08.0.7z -o"%cd%\poppler-24.08.0" -y  
+IF NOT EXIST "poppler-24.08.0.zip" (  
+    echo Error: poppler-24.08.0.zip not found.  
+    exit /b 1  
+)  
+REM Using PowerShell to extract the ZIP file  
+powershell -Command "Expand-Archive -Path 'poppler-24.08.0.zip' -DestinationPath '%cd%' -Force"  
+IF NOT EXIST "%cd%\poppler-24.08.0" (  
+    echo Error: Failed to extract Poppler files.  
+    exit /b 1  
+)  
   
-REM Set POPPLER_PATH in .env file  
 echo Setting POPPLER_PATH in .env file...  
-echo POPPLER_PATH=%cd%\poppler-24.08.0\Library\bin> .env  
-  
-REM Deactivate virtual environment  
-deactivate  
+IF NOT EXIST ".env" (  
+    echo. > .env  
+)  
+echo POPPLER_PATH=%cd%\poppler-24.08.0\Library\bin>> .env  
   
 echo Setup complete.  
+pause  

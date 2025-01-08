@@ -17,10 +17,10 @@ Before running the notebooks, ensure you have the following:
    
 ### Azure Resources  
    
-- **Azure AI Search Service**: [An instance of Azure AI Search] (#https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).  
-- **Azure Storage Account**: [Blob storage] (#https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) containing your documents (e.g., PDFs).  
+- **Azure AI Search Service**: [An instance of Azure AI Search] (https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).  
+- **Azure Storage Account**: [Blob storage] (https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) containing your documents (e.g., PDFs).  
 - **Azure OpenAI Service** (for the Pull method): For generating text embeddings.  
-- **Azure AU Services** (for the Pull method): For generating image embeddings.  
+- **Azure AI Services** (for the Pull method): For generating image embeddings.  
 - **Azure AI Foundry** (for the Push method): For generating text and image embeddings in the psuh methods.  
 - **Azure Document Intelligence**: For extracting text and images from documents.
 
@@ -31,12 +31,7 @@ Ensure that appropriate permissions and roles are assigned, such as the **Storag
    
 - **Python 3.8 or higher**: The notebooks require Python 3.8+.  
 - **Git**: To clone the repository.  
-- **7-Zip** or equivalent** (for Windows users): For extracting Poppler files used in PDF processing.  
    
-### Environment Variables  
-   
-Create a `.env` file in the repository root based on the provided `.env.template`.
-
 ## Setup Instructions  
    
 Follow these steps to set up your environment and run the notebooks.  
@@ -79,7 +74,11 @@ chmod +x setup.sh
 - **Sets the `POPPLER_PATH`** in the `.env` file (Windows users).  
 - **Deactivates the virtual environment** (optional).  
    
-### 3. Activate the Virtual Environment (If Not Already Activated)  
+### 3.Environment Variables  
+   
+Add the required variables shared in the `.env.template` file to the `.env` file created by the script created by the script in the repository root.
+
+### 4. Activate the Virtual Environment (If Not Already Activated)  
    
 If the virtual environment is not activated by the setup script, activate it manually.  
    
@@ -95,7 +94,7 @@ If the virtual environment is not activated by the setup script, activate it man
 source .venv/bin/activate  
 ```  
    
-### 4. Run the Notebooks  
+### 5. Run the Notebooks  
    
 Use Jupyter Notebook or Jupyter Lab to run the notebooks.  
    
@@ -113,7 +112,7 @@ Open the notebooks in the following order:
    
 **Note**: Ensure that all the required environment variables are properly set before running the notebooks.  
    
-### 5. Deactivate the Virtual Environment (Optional)  
+### 6. Deactivate the Virtual Environment (Optional)  
    
 After you have finished running the notebooks, you can deactivate the virtual environment.  
    
@@ -125,13 +124,7 @@ deactivate
    
 For a detailed walkthrough and explanation of the concepts, please refer to the accompanying article:  
    
-- [Multimodal Ingestion into Azure AI Search](#) *(Link to Medium article)*  
-   
-## Troubleshooting  
-   
-- **Azure Resource Setup**: Ensure that your Azure resources are properly set up and that the service endpoints and API keys are correct.  
-- **Permissions**: Check that you have the necessary permissions assigned to your Azure services.  
-- **Poppler/PDF Processing**: If you encounter issues with Poppler or PDF processing, ensure that `POPPLER_PATH` is correctly set and that the Poppler binaries are properly extracted.  
+- [Multimodal Ingestion into Azure AI Search](#)
    
 ## Contributing  
    
@@ -140,7 +133,3 @@ Contributions are welcome! Please open an issue or submit a pull request for any
 ## License  
    
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.  
-   
----  
-   
-Feel free to customize or expand upon this README to better fit your project's needs.
