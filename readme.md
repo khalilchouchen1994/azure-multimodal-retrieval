@@ -1,11 +1,13 @@
-# Multimodal Ingestion into Azure AI Search: Pull and Push Methods  
-   
+# Building Multimodal Retrieval Systems in Azure
+
 ## Introduction  
+
+In the rapidly evolving era of Generative AI (GenAI), multimodality - the ability to handle and integrate diverse data types such as text and images - is a cornerstone of modern GenAI applications.
    
 This repository demonstrates how to perform multimodal data ingestion into **Azure AI Search** using two different methods:  
    
 - **Pull Method**: Utilizing Azure AI Search Indexers to pull data from data sources, enrich it using skillsets, and index it.  
-- **Push Method**: Creating a custom asynchronous indexing pipeline to push data directly into Azure AI Search.  
+- **Push Method**: Creating a custom **asynchronous, modular and multi-threaded** indexing pipeline to push data directly into Azure AI Search.  
    
 These notebooks showcase how to ingest both text and images, with minimal information loss, to enable advanced search capabilities.  
    
@@ -124,7 +126,7 @@ deactivate
    
 For a detailed walkthrough and explanation of the concepts, please refer to the accompanying article:  
    
-- [Multimodal Ingestion into Azure AI Search](#)
+- [Navigating Multimodal Data Ingestion for Advanced Retrieval Systems with Azure AI Foundry, Azure AI Search and Azure Document Intelligence](#https://medium.com/@khalilchouchen1994/navigating-multimodal-data-ingestion-for-advanced-retrieval-systems-with-azure-ai-foundry-and-d6b41d6d059c)
    
 ## Contributing  
    
