@@ -17,8 +17,8 @@ Before running the notebooks, ensure you have the following:
    
 ### Azure Resources  
    
-- **Azure AI Search Service**: [An instance of Azure AI Search] (https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).  
-- **Azure Storage Account**: [Blob storage] (https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) containing your documents (e.g., PDFs).  
+- **Azure AI Search Service**: [An instance of Azure AI Search](https://learn.microsoft.com/en-us/azure/search/search-create-service-portal).  
+- **Azure Storage Account**: [Blob storage](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) containing your documents (e.g., PDFs).  
 - **Azure OpenAI Service** (for the Pull method): For generating text embeddings.  
 - **Azure AI Services** (for the Pull method): For generating image embeddings.  
 - **Azure AI Foundry** (for the Push method): For generating text and image embeddings in the psuh methods.  

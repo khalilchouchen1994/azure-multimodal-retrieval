@@ -13,7 +13,7 @@ class Chunker:
                 text_queue.task_done()  
                 break  
   
-            blob_name, text, parent_id, page_number = data  
+            blob_name, blob_uri, text, parent_id, page_number = data  
             logger.info(f"Chunker {worker_id}: Chunking document {blob_name} page {page_number}")  
   
             start_time = time.time()  
@@ -28,6 +28,6 @@ class Chunker:
   
             # Put each chunk into the chunk queue  
             for chunk in chunks:  
-                await chunk_queue.put((blob_name, chunk, parent_id, page_number))  
+                await chunk_queue.put((blob_name, blob_uri, chunk, parent_id, page_number))  
   
             text_queue.task_done()  

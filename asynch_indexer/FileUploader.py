@@ -36,7 +36,9 @@ class FileUploader:
                     "chunk": document.get("chunk", ""),  
                     "text_vector": document.get("text_vector"),  
                     "image_vector": document.get("image_vector"),  
-                    "page_number": document.get("page_number", None),  
+                    "page_number": document.get("page_number"),  
+                    "content_type": document.get("content_type"),  
+                    "source_link": document.get("source_link"),  
                 }  
   
                 # Remove fields with None values to prevent indexing errors  

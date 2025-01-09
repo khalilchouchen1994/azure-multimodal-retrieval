@@ -28,6 +28,9 @@ class FileReader:
             start_time = time.time()  
   
             blob_client = container_client.get_blob_client(blob)  
+            
+            # Get the blob URI without SAS token  
+            blob_uri = blob_client.url
   
             # Download the blob data asynchronously  
             stream = await blob_client.download_blob()  
@@ -43,7 +46,7 @@ class FileReader:
   
             for page in result.pages:  
                 page_text = "\n".join([line.content for line in page.lines])  
-                text_pages.append((blob.name, page_text, parent_id, page.page_number))  
+                text_pages.append((blob.name, blob_uri, page_text, parent_id, page.page_number))  
   
             # Convert the PDF pages to images in a separate thread to prevent blocking  
             dpi = 300  # Adjust DPI as needed  
@@ -109,7 +112,7 @@ class FileReader:
                         image_data = image_buffer.getvalue()  
   
                         # Append the image data to the images list  
-                        images.append((blob.name, image_data, parent_id, page_number))  
+                        images.append((blob.name, blob_uri, image_data, parent_id, page_number))  
             else:  
                 logger.info(f"Reader {worker_id}: No figures found in {blob.name}")  
   

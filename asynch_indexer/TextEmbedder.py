@@ -27,7 +27,7 @@ class TextEmbedder:
                 chunk_queue.task_done()  
                 break  
   
-            blob_name, chunk, parent_id, page_number = data  
+            blob_name, blob_uri, chunk, parent_id, page_number = data  
             chunk_id = str(uuid.uuid4())  
             logger.info(f"TextEmbedder {worker_id}: Embedding chunk {chunk_id} from document {blob_name} page {page_number}")  
             start_time = time.time()  
@@ -45,6 +45,8 @@ class TextEmbedder:
                     "title" : blob_name,
                     "text_vector": vector,  
                     "page_number": page_number,  
+                    "content_type": "text",  
+                    "source_link": blob_uri,  
                 }  
                 await vector_queue.put(document)  
             except Exception as e:  

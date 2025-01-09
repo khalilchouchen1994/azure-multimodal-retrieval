@@ -24,7 +24,7 @@ class ImageEmbedder:
                 image_queue.task_done()  
                 break  
   
-            blob_name, image_data, parent_id, page_number = image_info  
+            blob_name, blob_uri, image_data, parent_id, page_number = image_info  
             image_id = str(uuid.uuid4())  
   
             try:  
@@ -38,16 +38,18 @@ class ImageEmbedder:
                 response = self.embeddings_client.embed(  
                     input=[EmbeddingInput(image=image_base64)]  
                 ) 
-  
+                
                 # Create document for indexing  
                 document = {  
                     "parent_id": parent_id,  
                     "chunk_id": image_id,  
                     "title": blob_name,  
-                    "image_embedding": response.data[0].embedding,  
-                    "page_number": page_number  
+                    "image_vector": response.data[0].embedding,  
+                    "page_number": page_number ,
+                    "content_type": "image",  
+                    "source_link": blob_uri,   
                 }  
-  
+                
                 # Add to uploader queue  
                 await uploader_queue.put(document)  
                 logger.info(f"ImageEmbedder {worker_id}: Successfully processed image {image_id} using model {response.model}. Token consumption {response.usage}")  
