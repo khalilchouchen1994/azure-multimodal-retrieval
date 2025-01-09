@@ -11,7 +11,7 @@ This repository demonstrates how to perform multimodal data ingestion into **Azu
    
 These notebooks showcase how to ingest both text and images, with minimal information loss, to enable advanced search capabilities.  
    
-For a detailed explanation of the concepts and implementation, please refer to the accompanying article [here](#).  
+For a detailed explanation of the concepts and implementation, please refer to the accompanying article [here](#https://medium.com/@khalilchouchen1994/navigating-multimodal-data-ingestion-for-advanced-retrieval-systems-with-azure-ai-foundry-and-d6b41d6d059c).  
    
 ## Prerequisites  
    
@@ -121,12 +121,6 @@ After you have finished running the notebooks, you can deactivate the virtual en
 ```bash  
 deactivate  
 ```  
-   
-## Resources and References  
-   
-For a detailed walkthrough and explanation of the concepts, please refer to the accompanying article:  
-   
-- [Navigating Multimodal Data Ingestion for Advanced Retrieval Systems with Azure AI Foundry, Azure AI Search and Azure Document Intelligence](#https://medium.com/@khalilchouchen1994/navigating-multimodal-data-ingestion-for-advanced-retrieval-systems-with-azure-ai-foundry-and-d6b41d6d059c)
    
 ## Contributing  
    
